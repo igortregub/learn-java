@@ -16,7 +16,6 @@ public class Test {
         for (int i = 0; i <= 1000; i++) {
             int value = i + 10;
 
-
             System.out.println("push item to stack, item value: " + value);
             stack.push(value);
         }
