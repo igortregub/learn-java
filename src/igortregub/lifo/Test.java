@@ -5,7 +5,7 @@ import java.util.EmptyStackException;
 public class Test {
 
     public static void main(String[] args) {
-        IStack stack = new Stack();
+        IStack<Integer> stack = new Stack<>();
 
         try {
             stack.pop();

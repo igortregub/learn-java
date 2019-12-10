@@ -2,9 +2,9 @@ package igortregub.lifo;
 
 import java.util.EmptyStackException;
 
-public interface IStack {
+public interface IStack<T> {
 
-    void push(int item);
+    void push(T item);
 
-    int pop() throws EmptyStackException;
+    T pop() throws EmptyStackException;
 }

@@ -1,44 +1,30 @@
 package igortregub.lifo;
 
-import java.util.Arrays;
 import java.util.EmptyStackException;
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
-public class Stack implements IStack {
-    private int minSize = 10;
-
-    private int[] items;
-
-    private int currentItem = -1;
+public class Stack<T> implements IStack<T> {
+    private LinkedList<T> items;
 
     public Stack() {
-        this(10);
-    }
-
-    public Stack(int stackSize) {
-        items = new int[stackSize];
+        items = new LinkedList<>();
     }
 
     @Override
-    public void push(int item) throws IndexOutOfBoundsException {
-        if (items.length <= currentItem + 1) {
-            items = Arrays.copyOf(items, items.length * 2);
-        }
-
-        currentItem++;
-
-        items[currentItem] = item;
+    public void push(T item) {
+        items.addFirst(item);
     }
 
     @Override
-    public int pop() throws EmptyStackException {
-        if (currentItem < 0) {
-            throw new EmptyStackException();
-        }
+    public T pop() throws EmptyStackException {
+        try {
+            return items.getFirst();
+        } catch (NoSuchElementException e) {
+            EmptyStackException exception = new EmptyStackException();
+            exception.initCause(e);
 
-        if(items.length > currentItem * 2 && items.length > minSize) {
-            items = Arrays.copyOf(items, currentItem + 1);
+            throw exception;
         }
-
-        return items[currentItem--];
     }
 }
