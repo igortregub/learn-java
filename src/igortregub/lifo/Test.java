@@ -13,14 +13,14 @@ public class Test {
             System.out.println("stack.pop(), expected exception: " + e.toString());
         }
 
-        for (int i = 0; i <= 1000; i++) {
+        for (int i = 0; i <= 15; i++) {
             int value = i + 10;
 
             System.out.println("push item to stack, item value: " + value);
             stack.push(value);
         }
 
-        for (int i = 0; i <= 1000; i++) {
+        for (int i = 0; i <= 16; i++) {
             try {
                 System.out.println("Get item from stack: " + stack.pop());
             } catch (EmptyStackException e) {

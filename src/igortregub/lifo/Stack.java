@@ -1,30 +1,26 @@
 package igortregub.lifo;
 
 import java.util.EmptyStackException;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
 public class Stack<T> implements IStack<T> {
-    private LinkedList<T> items;
-
-    public Stack() {
-        items = new LinkedList<>();
-    }
+    private Node<T> lastItem;
 
     @Override
     public void push(T item) {
-        items.addFirst(item);
+        lastItem = new Node<>(item, lastItem);
     }
 
     @Override
     public T pop() throws EmptyStackException {
-        try {
-            return items.getFirst();
-        } catch (NoSuchElementException e) {
-            EmptyStackException exception = new EmptyStackException();
-            exception.initCause(e);
-
-            throw exception;
+        if (lastItem == null) {
+            throw new EmptyStackException();
         }
+
+        Node<T> current = lastItem;
+        lastItem = lastItem.getPreviousNode();
+
+        current.setPreviousNode(null);
+
+        return current.getItem();
     }
 }
