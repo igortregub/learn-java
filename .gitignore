@@ -1,2 +1,4 @@
 .idea
-src/igortregub/inh
+src/igortregub/inh/*
+src/igortregub/exercises/*
+z-examples/*
